@@ -25,7 +25,7 @@ void enqueue(int item)
 void dequeue()
 {
 
-	if(front==-1)
+	if(front==-1 ||front>rear)
 	{
 		printf("\n queue is empty\n");
 		//return -1;
@@ -42,7 +42,7 @@ void dequeue()
 void traversal()
 {
 
-	if(front==-1)
+	if(front==-1 || front>rear)
 	{
 		printf("\n queue is empty\n");
 	}
