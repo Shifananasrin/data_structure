@@ -49,7 +49,7 @@ void insertatend(int data)
     
     if (header == NULL)  // Check if the list is empty
     {
-        header = newnode;
+        header = newnode;  // If the list is empty, make the new node the head
     }
     else
     {
@@ -59,7 +59,7 @@ void insertatend(int data)
             ptr = ptr->Rlink;
         }
         ptr->Rlink = newnode;  // Insert the new node at the end
-        newnode->Llink = ptr;  // Set the Llink of the new node to the last node
+        newnode->Llink = ptr;  // Set the Llink of new node to the last node
     }
 }
 
