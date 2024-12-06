@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_SIZE 5  // Define maximum size of the stack
+
 // Define Node structure
 struct Node {
     int data;
@@ -9,7 +11,7 @@ struct Node {
 
 // Declare top pointer as global variable
 struct Node *top = NULL;  // Initialize top to NULL
-
+int size = 0;  // Initialize size of the stack
 
 // Function to create a new Node
 struct Node *createNode(int data) {
@@ -21,6 +23,11 @@ struct Node *createNode(int data) {
 
 // Function to push a new element onto the stack
 void push(int data) {
+    if (size == MAX_SIZE) {  // Check if stack is full
+        printf("Stack overflow! Cannot push more elements.\n");
+        return;
+    }
+
     struct Node *newnode = createNode(data);  // Create a new node
     if (top == NULL) {
         top = newnode;  // If stack is empty, new node becomes the top
@@ -28,6 +35,7 @@ void push(int data) {
         newnode->link = top;  // Point new node to the current top
         top = newnode;  // Update top to the new node
     }
+    size++;  // Increment the stack size
     printf("Inserted value: %d\n", data);
 }
 
@@ -40,6 +48,7 @@ void pop() {
         top = top->link;         // Move top to the next node in the stack
         printf("Deleted value: %d\n", ptr->data);  // Print deleted value
         free(ptr);               // Free the memory of the old top node
+        size--;  // Decrement the stack size
     }
 }
 
@@ -52,7 +61,7 @@ void peek() {
     }
 }
 
-// Function to traverse and print the list
+// Function to display the stack size and traverse the list
 void display() {
     struct Node *ptr = top;
     if (ptr == NULL) {
@@ -65,6 +74,7 @@ void display() {
         }
         printf("\n");  // Newline after printing all elements
     }
+    printf("Stack size: %d\n", size);  // Print the current size of the stack
 }
 
 int main() {
